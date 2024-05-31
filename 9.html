@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Quiz for Kids</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #FFEFBA, #FFFFFF);
+      text-align: center;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .navigation {
+      background: #4CAF50;
+      padding: 10px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+    .navigation a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 15px;
+      margin: 0 5px;
+      display: inline-block;
+      transition: background 0.3s ease;
+    }
+    .navigation a:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    #container {
+      max-width: 600px;
+      margin: 100px auto 20px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease-in-out;
+    }
+    .logo {
+      width: 100px;
+      height: auto;
+      animation: bounce 2s infinite;
+    }
+    h1 {
+      color: #ff5722;
+      font-size: 2.5em;
+    }
+    #question {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #4CAF50;
+    }
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background-color: #0056b3;
+      transform: scale(1.1);
+    }
+    .footer {
+      margin-top: 50px;
+      color: #555;
+      font-size: 0.9em;
+      animation: slideIn 1s ease-out;
+    }
+    #score {
+      margin-top: 20px;
+      font-size: 30px;
+      color: #4CAF50;
+    }
+    #progress {
+      margin-top: 20px;
+      height: 20px;
+      background-color: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    #progress-bar {
+      width: 0;
+      height: 100%;
+      background-color: #4CAF50;
+      transition: width 1.3s ease;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-30px); }
+      60% { transform: translateY(-15px); }
+    }
+    @keyframes slideIn {
+      0% { transform: translateY(100px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="navigation">
+    <a href="math quiz.html">HOME</a>
+    <p>Feel free to refresh the page to attempt the quiz again or click the home button to explore another quiz.</p>
+  </div>
+  <div id="container">
+    <img src="pixx.png" alt="MathCloud Tutorial Logo" class="logo">
+    <h1>Math Quiz 8</h1>
+    <div id="question"></div>
+    <button class="btn btn-primary" id="btn1"></button>
+    <button class="btn btn-primary" id="btn2"></button>
+    <button class="btn btn-primary" id="btn3"></button>
+    <button class="btn btn-primary" id="btn4"></button>
+    <div id="score">Score: <span id="scoreValue">0</span></div>
+    <div id="progress">
+      <div id="progress-bar"></div>
+    </div>
+  </div>
+
+  <audio id="correctSound" src="correct.mp3"></audio>
+  <audio id="wrongSound" src="wrong.mp3"></audio>
+
+  <script>
+    const questions = [
+      { question: 'What is the sine of 30 degrees?', answers: ['1/2', '1', 'sqrt(3)/2', '0'], correct: '1/2' },
+      { question: 'What is the cosine of 60 degrees?', answers: ['1/2', '1', 'sqrt(3)/2', '0'], correct: '1/2' },
+      { question: 'What is the tangent of 45 degrees?', answers: ['1', '1/2', 'sqrt(3)/2', '0'], correct: '1' },
+      { question: 'What is the cosecant of 60 degrees?', answers: ['2', '2/sqrt(3)', 'sqrt(3)/2', '1'], correct: '2' },
+      { question: 'What is the secant of 30 degrees?', answers: ['2', '2/sqrt(3)', 'sqrt(3)/2', '1'], correct: '2' },
+      { question: 'What is the cotangent of 30 degrees?', answers: ['1', '1/2', 'sqrt(3)/2', '0'], correct: 'sqrt(3)/3' },
+      { question: 'What is the value of sin(π/6)?', answers: ['1/2', '1', 'sqrt(3)/2', '0'], correct: '1/2' },
+      { question: 'What is the value of cos(π/3)?', answers: ['1/2', '1', 'sqrt(3)/2', '0'], correct: '1/2' },
+      { question: 'What is the value of tan(π/4)?', answers: ['1', '1/2', 'sqrt(3)/2', '0'], correct: '1' },
+      { question: 'What is the value of cot(π/3)?', answers: ['1', '1/2', 'sqrt(3)/2', '0'], correct: 'sqrt(3)' }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const questionElement = document.getElementById('question');
+    const btn1 = document.getElementById('btn1');
+    const btn2 = document.getElementById('btn2');
+    const btn3 = document.getElementById('btn3');
+    const btn4 = document.getElementById('btn4');
+    const scoreElement = document.getElementById('scoreValue');
+    const progressBar = document.getElementById('progress-bar');
+    const correctSound = document.getElementById('correctSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    function loadQuestion() {
+      const question = questions[currentQuestion];
+      questionElement.textContent = question.question;
+      btn1.textContent = question.answers[0];
+      btn2.textContent = question.answers[1];
+      btn3.textContent = question.answers[2];
+      btn4.textContent = question.answers[3];
+    }
+
+    function checkAnswer(selectedAnswer) {
+      const question = questions[currentQuestion];
+      if (selectedAnswer === question.correct) {
+        score++;
+        scoreElement.textContent = score;
+        correctSound.play();
+      } else {
+        wrongSound.play();
+      }
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+        updateProgressBar();
+      } else {
+        alert('Quiz finished! Your score: ' + score);
+        // You can add more logic here for what to do after the quiz finishes
+      }
+    }
+
+    btn1.addEventListener('click', function() {
+      checkAnswer(btn1.textContent);
+    });
+
+    btn2.addEventListener('click', function() {
+      checkAnswer(btn2.textContent);
+    });
+
+    btn3.addEventListener('click', function() {
+      checkAnswer(btn3.textContent);
+    });
+
+    btn4.addEventListener('click', function() {
+      checkAnswer(btn4.textContent);
+    });
+
+    // Load first question when the page loads
+    loadQuestion();
+    updateProgressBar();
+
+    function updateProgressBar() {
+      const progress = (currentQuestion + 1) / questions.length * 100;
+      progressBar.style.width = progress + '%';
+    }
+  </script>
+  <div class="footer">
+    <p>&copy; 2024 MathCloud Tutorials ...teaches the way you learn best!</p>
+  </div>
+</body>
+</html>
+
+
+

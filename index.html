@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathCloud Tutorial Interactive Portal</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #73a5ff, #5477f5);
+            color: #fff;
+            overflow-x: hidden;
+        }
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: inline-block;
+            transition: background 0.3s ease;
+        }
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 10px 0;
+            box-sizing: border-box;
+            margin-top: 50px; /* Adjusted for the fixed nav */
+        }
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        .container {
+            max-width: 800px;
+            margin: 100px auto 0;
+            padding: 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        .logo {
+            margin-bottom: 20px;
+            width: 150px;
+            height: auto;
+            animation: spin 5s linear infinite;
+        }
+        h1 {
+            color: #ffeb3b;
+            font-size: 2.5em;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .button {
+            display: inline-block;
+            width: 45%;
+            max-width: 200px;
+            margin: 10px;
+            padding: 15px 30px;
+            text-align: center;
+            background-color: #ff5722;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #e64a19;
+            transform: scale(1.1);
+        }
+        .footer {
+            margin-top: 50px;
+            color: #ffeb3b;
+            animation: slideIn 1s ease-out;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes slideIn {
+            0% { transform: translateY(100px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="marquee">
+        <div class="marquee-content">
+            300 students have subscribed for MathCloud Educational suite, 7 schools have also subscribed. You can join this trend.
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            <img src="pixx.png" alt="MathCloud Tutorial Logo" class="logo">
+            <h1>MathCloud Tutorial Interactive Suite</h1>
+            <p>Join MathCloud now and begin a voyage of education and advancement! We provide an interactive and comprehensive platform designed to assist students with mental math and enhance their reading, speaking, and vocabulary skills. If you find the suite appealing, you can subscribe for additional content tailored to your preferences.</p>
+        </div>
+        <a href="math quiz.html" class="button">Math Quiz</a>
+        <a href="spelling.html" class="button">Spelling Enhancer</a>
+        <a href="onlineclass.html" class="button">Online Class</a>
+        <a href="sub.html" class="button">Subscribe</a>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 MathCloud Tutorials ...teaches the way you learn best!</p>
+    </div>
+</body>
+</html>

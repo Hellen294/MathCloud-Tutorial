@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathCloud Tutorial</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #FFEFBA, #FFFFFF);
+            color: #333;
+        }
+        .navigation {
+            background: #4CAF50;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navigation a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            display: inline-block;
+            transition: background 0.3s ease;
+        }
+        .navigation a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .container {
+            max-width: 600px;
+            margin: 80px auto 20px;
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+        .logo {
+            margin-bottom: 20px;
+            width: 100px;
+            height: auto;
+            animation: bounce 2s infinite;
+        }
+        h1 {
+            color: #ff5722;
+            font-size: 2em;
+        }
+        p {
+            font-size: 1.2em;
+        }
+        .button {
+            display: inline-block;
+            width: 45%;
+            max-width: 200px;
+            margin: 10px;
+            padding: 10px 20px;
+            text-align: center;
+            background-color: #004080;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .button:hover {
+            background-color: #00264d;
+            transform: scale(1.1);
+        }
+        .footer {
+            margin-top: 50px;
+            color: #555;
+            font-size: 0.9em;
+            animation: slideIn 1s ease-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+        @keyframes slideIn {
+            0% { transform: translateY(100px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <a href="index.html">HOME</a>
+        <a href="math quiz.html">Math Quiz</a>
+        <a href="spelling.html">Spelling</a>
+    </div>
+    <div class="container">
+        <div class="header">
+            <img src="pixx.png" alt="MathCloud Tutorial Logo" class="logo">
+            <h1>MathCloud Tutorial interactive suite - Spelling Enhancer</h1>
+            <p>📝 <strong>Spelling Enhancer Application:</strong> Expand your English vocabulary with our innovative spelling enhancer app! Whether you're a student looking to ace your spelling tests or an adult aiming to refine your language skills, our application provides personalized exercises to boost your word mastery.</p>
+        </div>
+        <div class="handbooks">
+            <a href="spelling 1.html" class="button">Spelling word 1</a>
+            <a href="spelling 1.html" class="button">Spelling word 2</a>
+            <a href="spelling 1.html" class="button">Spelling word 3</a>
+            <a href="spelling 1.html" class="button">Spelling word 4</a>
+            <a href="spelling 1.html" class="button">Spelling word 5</a>
+            <a href="spelling 1.html" class="button">Spelling word 6</a>
+            <a href="spelling 1.html" class="button">Spelling word 7</a>
+            <a href="spelling 1.html" class="button">Spelling word 8</a>
+            <a href="spelling 1.html" class="button">Spelling word 9</a>
+            <a href="spelling 1.html" class="button">Spelling word 10</a>
+            <a href="spelling 1.html" class="button">Spelling word 11</a>
+            <a href="spelling 1.html" class="button">Spelling word 12</a>
+            <a href="spelling 1.html" class="button">Spelling word 13</a>
+            <a href="spelling 1.html" class="button">Spelling word 14</a>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 MathCloud Tutorials ...teaches the way you learn best!</p>
+    </div>
+</body>
+</html>

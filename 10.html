@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Quiz for Kids</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+    #container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: pink;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+    }
+    #question {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: green;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background-color: #007bff;
+      color: #fff;
+    }
+    .btn-success {
+      background-color: #28a745;
+      color: #fff;
+    }
+    .btn-warning {
+      background-color: #ffc107;
+      color: #000;
+    }
+    .btn-danger {
+      background-color: #dc3545;
+      color: #fff;
+    }
+    #score {
+      margin-top: 20px;
+      font-size: 30px;
+      color: green;
+    }
+    #progress {
+      margin-top: 20px;
+      height: 20px;
+      background-color: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    #progress-bar {
+      width: 0;
+      height: 100%;
+      background-color: green;
+      transition: width 1.3s ease;
+    }
+        .navigation a {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: blue;
+            background-color: pink;
+            border-radius: 5px;
+            margin: 0 10px;
+        }
+        .navigation a:hover {
+            background-color: purple;
+        }
+        .logo {
+            width: 30%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+        <div class="navigation">
+            <a href="math quiz.html">HOME</a>
+    <p>Feel free to refresh the page to attempt the quiz again or click the home button to explore another quiz.</p>
+    <h1>Math Quiz 10</h1>
+        </div>
+  <div id="container">
+    <img src="pixx.png" alt="MathCloud Tutorial Logo" class="logo">
+    <div id="question"></div>
+    <button class="btn btn-primary" id="btn1"></button>
+    <button class="btn btn-primary" id="btn2"></button>
+    <button class="btn btn-primary" id="btn3"></button>
+    <button class="btn btn-primary" id="btn4"></button>
+    <div id="score">Score: <span id="scoreValue">0</span></div>
+    <div id="progress">
+      <div id="progress-bar"></div>
+    </div>
+  </div>
+
+  <audio id="correctSound" src="correct.mp3"></audio>
+  <audio id="wrongSound" src="wrong.mp3"></audio>
+
+  <script>
+    const questions = [
+      { question: 'What is the sine of 30°?', answers: ['1/2', '1', '&radic;3/2', '0'], correct: '1/2' },
+      { question: 'What is the cosine of 60°?', answers: ['1/2', '1', '1/&radic;3', '0'], correct: '1/2' },
+      { question: 'What is the tangent of 45°?', answers: ['1', '1/2', '1/&radic;3', '0'], correct: '1' },
+      { question: 'What is the cosecant of 60°?', answers: ['2', '2/&radic;3', '2&radic;3', '1'], correct: '2' },
+      { question: 'What is the secant of 30°?', answers: ['2', '2/&radic;3', '2&radic;3', '1'], correct: '2' },
+      { question: 'What is the cotangent of 30°?', answers: ['&radic;3', '1/2', '1/&radic;3', '0'], correct: '&radic;3' },
+      { question: 'What is the value of sin(π/6)?', answers: ['1/2', '1', '&radic;3/2', '0'], correct: '1/2' },
+      { question: 'What is the value of cos(π/3)?', answers: ['1/2', '1', '1/&radic;3', '0'], correct: '1/2' },
+      { question: 'What is the value of tan(π/4)?', answers: ['1', '1/2', '1/&radic;3', '0'], correct: '1' },
+      { question: 'What is the value of cot(π/3)?', answers: ['&radic;3', '1/2', '1/&radic;3', '0'], correct: '&radic;3' }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const questionElement = document.getElementById('question');
+    const btn1 = document.getElementById('btn1');
+    const btn2 = document.getElementById('btn2');
+    const btn3 = document.getElementById('btn3');
+    const btn4 = document.getElementById('btn4');
+    const scoreElement = document.getElementById('scoreValue');
+    const progressBar = document.getElementById('progress-bar');
+    const correctSound = document.getElementById('correctSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    function loadQuestion() {
+      const question = questions[currentQuestion];
+      questionElement.textContent = question.question;
+      btn1.textContent = question.answers[0];
+      btn2.textContent = question.answers[1];
+      btn3.textContent = question.answers[2];
+      btn4.textContent = question.answers[3];
+    }
+
+    function checkAnswer(selectedAnswer) {
+      const question = questions[currentQuestion];
+      if (selectedAnswer === question.correct) {
+        score++;
+        scoreElement.textContent = score;
+        correctSound.play();
+      } else {
+        wrongSound.play();
+      }
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+        updateProgressBar();
+      } else {
+        alert('Quiz finished! Your score: ' + score);
+        // You can add more logic here for what to do after the quiz finishes
+      }
+    }
+
+    btn1.addEventListener('click', function() {
+      checkAnswer(btn1.textContent);
+    });
+
+    btn2.addEventListener('click', function() {
+      checkAnswer(btn2.textContent);
+    });
+
+    btn3.addEventListener('click', function() {
+      checkAnswer(btn3.textContent);
+    });
+
+    btn4.addEventListener('click', function() {
+      checkAnswer(btn4.textContent);
+    });
+
+    // Load first question when the page loads
+    loadQuestion();
+    updateProgressBar();
+
+    function updateProgressBar() {
+      const progress = (currentQuestion + 1) / questions.length * 100;
+      progressBar.style.width = progress + '%';
+    }
+  </script>
+</body>
+</html>

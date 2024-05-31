@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spelling Practice</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #e9e9e9;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px; /* Adjust max-width as needed */
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    .navigation {
+      text-align: center;
+    }
+    .instructions {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      text-align: center;
+    }
+
+    .input-field {
+      width: calc(100% - 40px);
+      max-width: 400px;
+      padding: 10px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      text-transform: uppercase;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .button, .navigation a {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .button:hover, .navigation a:hover {
+      background-color: #45a049;
+    }
+
+    .result-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .result {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .incorrect {
+      color: red;
+    }
+
+    .subscribe-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .subscribe-link {
+      color: #333;
+      text-decoration: underline;
+    }
+
+    .logo {
+      width: 100%;
+      max-width: 200px;
+      display: block;
+      margin: 0 auto;
+    }
+    .green-text {
+      color: green;
+    }
+    @media screen and (max-width: 500px) {
+      .input-field {
+        max-width: 100%;
+      }
+    }
+  </style>
+  <script>
+    function playAudio(sound) {
+      var audio = new Audio(sound);
+      audio.play();
+    }
+
+    function checkAnswer() {
+      var wordInput = document.getElementById('wordInput');
+      var userInput = wordInput.value.trim().toUpperCase();
+      var answer = "RECONCILIATION"; // Replace with the correct answer
+
+      var resultContainer = document.getElementById('resultContainer');
+      var correctSound = "correct.mp3";
+      var incorrectSound = "wrong.mp3";
+
+      if (userInput === answer) {
+        resultContainer.innerHTML = '<p class="result correct">Correct!</p>';
+        playAudio(correctSound);
+      } else {
+        resultContainer.innerHTML = '<p class="result incorrect">Incorrect, the correct word is: [<strong class="green-text">Reconciliation</strong>]!</p>';
+        playAudio(incorrectSound);
+      }
+    }
+
+    function previousWord() {
+      // Logic for previous word
+      alert("Go to previous word");
+    }
+
+    function nextWord() {
+      // Logic for next word
+      alert("Go to next word");
+    }
+
+    function toggleSpellCheck() {
+      var wordInput = document.getElementById('wordInput');
+      wordInput.spellcheck = !wordInput.spellcheck;
+      if (wordInput.spellcheck) {
+        alert("Spelling check enabled.");
+      } else {
+        alert("Spelling check disabled.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <img src="pixx.png" alt="MathCloud Tutorial Logo" class="logo">
+    <h1>Spelling word 6</h1>
+        <div class="navigation">
+            <a href="index.html">Go back to HOME page</a>
+        </div>
+    <div class="instructions">
+      <p>Begin the spelling activity by selecting "Play Word" and then listen attentively. You can play the word as many times as you need.</p>
+    </div>
+  
+   <form>
+  <label for="wordInput">Word Input (Spell Check Disabled):</label><br>
+  <input type="text" id="wordInput" class="input-field" spellcheck="false" placeholder="Type the word here"><br><br>
+</form>
+
+    <div class="button-container">
+      <button onclick="playAudio('Reconciliation.mp3')" class="button">Play Audio</button>
+      <button onclick="checkAnswer()" class="button">Check</button>
+      <a href="spelling 7.html" class="button">Next</a>
+    </div>
+
+    <div id="resultContainer" class="result-container"></div>
+
+    <div class="subscribe-container">
+      <p>You have the option to subscribe and receive words customized to your preferences:</p>
+      <a href="subscribe.html" class="subscribe-link">Subscribe here</a>
+    </div>
+  </div>
+</body>
+</html>

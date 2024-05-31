@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spelling Practice</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #FFEFBA, #FFFFFF);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h1 {
+      color: #ff5722;
+      text-align: center;
+    }
+
+    .navigation {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .instructions {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .input-field {
+      width: calc(100% - 40px);
+      max-width: 400px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      text-transform: uppercase;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .button, .navigation a {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #004080;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .button:hover, .navigation a:hover {
+      background-color: #00264d;
+      transform: scale(1.1);
+    }
+
+    .result-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .result {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .incorrect {
+      color: red;
+    }
+
+    .subscribe-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .subscribe-link {
+      color: #004080;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    .subscribe-link:hover {
+      color: #00264d;
+    }
+
+    .logo {
+      width: 100%;
+      max-width: 200px;
+      display: block;
+      margin: 0 auto 20px;
+      animation: bounce 2s infinite;
+    }
+
+    .green-text {
+      color: green;
+    }
+
+    @media screen and (max-width: 500px) {
+      .input-field {
+        max-width: 100%;
+      }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-30px); }
+      60% { transform: translateY(-15px); }
+    }
+  </style>
+  <script>
+    function playAudio(sound) {
+      var audio = new Audio(sound);
+      audio.play();
+    }
+
+    function checkAnswer() {
+      var wordInput = document.getElementById('wordInput');
+      var userInput = wordInput.value.trim().toUpperCase();
+      var answer = "PERSEVERANCE"; // Replace with the correct answer
+
+      var resultContainer = document.getElementById('resultContainer');
+      var correctSound = "correct.mp3";
+      var incorrectSound = "wrong.mp3";
+
+      if (userInput === answer) {
+        resultContainer.innerHTML = '<p class="result correct">Correct!</p>';
+        playAudio(correctSound);
+      } else {
+        resultContainer.innerHTML = '<p class="result incorrect">Incorrect, the correct word is: [<strong class="green-text">Perseverance</strong>]!</p>';
+        playAudio(incorrectSound);
+      }
+    }
+
+    function previousWord() {
+      // Logic for previous word
+      alert("Go to previous word");
+    }
+
+    function nextWord() {
+      // Logic for next word
+      alert("Go to next word");
+    }
+
+    function toggleSpellCheck() {
+      var wordInput = document.getElementById('wordInput');
+      wordInput.spellcheck = !wordInput.spellcheck;
+      if (wordInput.spellcheck) {
+        alert("Spelling check enabled.");
+      } else {
+        alert("Spelling check disabled.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <img src="pixx.png" alt="MathCloud Tutorial Logo" class="logo">
+    <h1>Spelling word 1</h1>
+    <div class="navigation">
+      <a href="spelling.html">Go back to HOME page</a>
+    </div>
+    <div class="instructions">
+      <p>Begin the spelling activity by selecting "Play Word" and then listen attentively. You can play the word as many times as you need.</p>
+    </div>
+    <form>
+      <label for="wordInput">Word Input (Spell Check Disabled):</label><br>
+      <input type="text" id="wordInput" class="input-field" spellcheck="false" placeholder="Type the word here"><br><br>
+    </form>
+    <div class="button-container">
+      <button onclick="playAudio('Perseverance.mp3')" class="button">Play Audio</button>
+      <button onclick="checkAnswer()" class="button">Check</button>
+      <a href="spelling 2.html" class="button">Next</a>
+    </div>
+    <div id="resultContainer" class="result-container"></div>
+    <div class="subscribe-container">
+      <p>You have the option to subscribe and receive words customized to your preferences:</p>
+      <a href="subscribe.html" class="subscribe-link">Subscribe here</a>
+    </div>
+  </div>
+</body>
+</html>
